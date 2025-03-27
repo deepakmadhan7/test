@@ -112,6 +112,29 @@
   
 </head>
 <body>
+  <nav>
+    <!-- Mobile menu button -->
+    <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+    
+    <!-- Navigation menu -->
+    <ul id="navMenu">
+      <li><a href="#college" id="home">HOME</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn" onclick="toggleDropdown(event)">EVENTS</a>
+        <ul class="dropdown-content" id="dropdownMenu">
+          <li><a href="#TECH">TECHNICAL</a></li>
+          <li><a href="#NONTECH">NONTECHNICAL</a></li>
+        </ul>
+      </li>
+      <li><a href="#sponsor">SPONSORS</a></li>
+      <li><a href="#about">ABOUT US</a></li>
+      <li><a href="#contact">CONTACT US</a></li>
+    </ul>
+  </nav>
   <!-- Add this to your header -->
 <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
   <i class="fas fa-bars"></i>
@@ -405,6 +428,65 @@
     }
   </script>
   <script>
+    // Toggle mobile menu
+function toggleMobileMenu() {
+  const navMenu = document.getElementById("navMenu");
+  const mobileBtn = document.querySelector(".mobile-menu-btn");
+  
+  navMenu.classList.toggle("active");
+  mobileBtn.classList.toggle("change");
+}
+
+// Improved dropdown functionality
+function toggleDropdown(event) {
+  event.preventDefault();
+  const dropdown = event.target.nextElementSibling;
+  const allDropdowns = document.querySelectorAll('.dropdown-content');
+  
+  // Close all other dropdowns
+  allDropdowns.forEach(function(menu) {
+    if (menu !== dropdown && menu.style.display === "block") {
+      menu.style.display = "none";
+    }
+  });
+  
+  // Toggle current dropdown
+  if (dropdown.style.display === "block") {
+    dropdown.style.display = "none";
+  } else {
+    dropdown.style.display = "block";
+  }
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(event) {
+  if (!event.target.matches('.dropbtn') && !event.target.matches('.mobile-menu-btn *')) {
+    const dropdowns = document.querySelectorAll(".dropdown-content");
+    dropdowns.forEach(function(dropdown) {
+      dropdown.style.display = "none";
+    });
+    
+    // Also close mobile menu if clicking outside
+    if (!event.target.closest('nav')) {
+      const navMenu = document.getElementById("navMenu");
+      const mobileBtn = document.querySelector(".mobile-menu-btn");
+      navMenu.classList.remove("active");
+      mobileBtn.classList.remove("change");
+    }
+  }
+});
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('#navMenu a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      const navMenu = document.getElementById("navMenu");
+      const mobileBtn = document.querySelector(".mobile-menu-btn");
+      navMenu.classList.remove("active");
+      mobileBtn.classList.remove("change");
+    }
+  });
+});
     // Improved dropdown functionality
 function toggleDropdown() {
   var menu = document.getElementById("dropdownMenu");

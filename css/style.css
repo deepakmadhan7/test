@@ -1,5 +1,136 @@
 /* Add this to your style.css */
 
+/* Navigation styles */
+nav {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 15px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  position: relative;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  padding: 10px 15px;
+  transition: 0.3s;
+  display: block;
+}
+
+/* Mobile menu button styles */
+.mobile-menu-btn {
+  display: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.mobile-menu-btn div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: 0.4s;
+}
+
+/* Dropdown menu styles */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  min-width: 150px;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  padding: 0;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-content li {
+  margin: 0;
+  text-align: left;
+}
+
+.dropdown-content li a {
+  padding: 10px;
+  display: block;
+  color: white;
+}
+
+/* Hover effects */
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+.dropdown-content li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  nav ul {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    padding: 10px 0;
+  }
+  
+  nav ul.active {
+    display: flex;
+  }
+  
+  nav ul li {
+    margin: 5px 0;
+    text-align: center;
+  }
+  
+  .dropdown-content {
+    position: static;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Hamburger animation */
+  .change .bar1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  
+  .change .bar2 {
+    opacity: 0;
+  }
+  
+  .change .bar3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+}
 /* Base responsive settings */
 html {
   font-size: 16px;
