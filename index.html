@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>YANTRA 2k25</title>
   <link rel="shortcut icon" type="image/png" href="conoLogo.webp">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,6 +85,7 @@
     <source src="bg.mp4" type="video/mp4">
   </video>
   <div id="particles"></div>
+  
 
   <header>
 
@@ -104,13 +105,17 @@
 
       <button class="neon-button" onclick="register()">REGISTER</button>
       
-
+      
 
 
     </div>
   
 </head>
 <body>
+  <!-- Add this to your header -->
+<div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+  <i class="fas fa-bars"></i>
+</div>
   <nav>
     <ul>
         <li><a href="#college" id="home">HOME</a></li>
@@ -400,6 +405,40 @@
     }
   </script>
   <script>
+    // Improved dropdown functionality
+function toggleDropdown() {
+  var menu = document.getElementById("dropdownMenu");
+  var allDropdowns = document.querySelectorAll('.dropdown-content');
+  
+  // Close all other dropdowns first
+  allDropdowns.forEach(function(dropdown) {
+    if (dropdown !== menu && dropdown.style.display === "block") {
+      dropdown.style.display = "none";
+    }
+  });
+  
+  // Toggle current dropdown
+  if (menu.style.display === "block") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "block";
+  }
+}
+
+// Close dropdown when clicking outside (improved)
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('.dropdown')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    for (var i = 0; i < dropdowns.length; i++) {
+      dropdowns[i].style.display = "none";
+    }
+  }
+});
+// Add to your JavaScript
+function toggleMobileMenu() {
+  var nav = document.querySelector('nav');
+  nav.classList.toggle('active');
+}
     document.addEventListener("DOMContentLoaded", () => {
       const marquee = document.querySelector(".marquee-inner");
       const speed = 2; // Scrolling Speed
